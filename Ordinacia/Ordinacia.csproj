@@ -412,10 +412,10 @@
     <Compile Include="Controllers\InsuranceWorkerController.cs" />
     <Compile Include="Controllers\PharmacistController.cs" />
     <Compile Include="Data_Access\AuthenticationDB.cs" />
-    <Compile Include="Data_Access\Insurance.cs" />
+    <Compile Include="Data_Access\Medicine.cs" />
+    <Compile Include="Data_Access\RoleClasses.cs" />
     <Compile Include="Data_Access\Patient.cs" />
     <Compile Include="Data_Access\Role.cs" />
-    <Compile Include="Data_Access\Specification.cs" />
     <Compile Include="Data_Access\User.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -423,6 +423,18 @@
     <Compile Include="Migrations\202001272040238_Init.cs" />
     <Compile Include="Migrations\202001272040238_Init.Designer.cs">
       <DependentUpon>202001272040238_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001281539413_SubFields.cs" />
+    <Compile Include="Migrations\202001281539413_SubFields.Designer.cs">
+      <DependentUpon>202001281539413_SubFields.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001282031549_yetAnotherOne.cs" />
+    <Compile Include="Migrations\202001282031549_yetAnotherOne.Designer.cs">
+      <DependentUpon>202001282031549_yetAnotherOne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001282034076_fixUser.cs" />
+    <Compile Include="Migrations\202001282034076_fixUser.Designer.cs">
+      <DependentUpon>202001282034076_fixUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SerializeModel.cs" />
@@ -586,6 +598,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001272040238_Init.resx">
       <DependentUpon>202001272040238_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001281539413_SubFields.resx">
+      <DependentUpon>202001281539413_SubFields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001282031549_yetAnotherOne.resx">
+      <DependentUpon>202001282031549_yetAnotherOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001282034076_fixUser.resx">
+      <DependentUpon>202001282034076_fixUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

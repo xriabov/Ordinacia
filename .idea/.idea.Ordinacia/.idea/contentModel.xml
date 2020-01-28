@@ -40,10 +40,10 @@
         </e>
         <e p="Data_Access" t="Include">
           <e p="AuthenticationDB.cs" t="Include" />
-          <e p="Insurance.cs" t="Include" />
+          <e p="Medicine.cs" t="Include" />
           <e p="Patient.cs" t="Include" />
           <e p="Role.cs" t="Include" />
-          <e p="Specification.cs" t="Include" />
+          <e p="RoleClasses.cs" t="Include" />
           <e p="User.cs" t="Include" />
         </e>
         <e p="favicon.ico" t="Include" />
@@ -53,6 +53,15 @@
           <e p="202001272040238_Init.cs" t="Include" />
           <e p="202001272040238_Init.Designer.cs" t="Include" />
           <e p="202001272040238_Init.resx" t="Include" />
+          <e p="202001281539413_SubFields.cs" t="Include" />
+          <e p="202001281539413_SubFields.Designer.cs" t="Include" />
+          <e p="202001281539413_SubFields.resx" t="Include" />
+          <e p="202001282031549_yetAnotherOne.cs" t="Include" />
+          <e p="202001282031549_yetAnotherOne.Designer.cs" t="Include" />
+          <e p="202001282031549_yetAnotherOne.resx" t="Include" />
+          <e p="202001282034076_fixUser.cs" t="Include" />
+          <e p="202001282034076_fixUser.Designer.cs" t="Include" />
+          <e p="202001282034076_fixUser.resx" t="Include" />
           <e p="Configuration.cs" t="Include" />
         </e>
         <e p="Models" t="Include">

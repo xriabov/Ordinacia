@@ -186,3 +186,5 @@
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/bin/Microsoft.Bcl.HashCode.xml
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/bin/System.Threading.Tasks.Extensions.xml
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.dll.config
+/Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.Migrations.SubFields.resources
+/Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.Migrations.yetAnotherOne.resources

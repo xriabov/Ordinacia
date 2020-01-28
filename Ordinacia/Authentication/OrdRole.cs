@@ -42,11 +42,8 @@ namespace Ordinacia.Authentication
             using (var context = new AuthenticationDB())
             {
                 var user = context.Usrs
-                    .Where(us => string.Compare(username, us.UserName, StringComparison.OrdinalIgnoreCase) == 0)
-                    .FirstOrDefault();
-                if (user == null)
-                    return null;
-                return user.Roles.Select(r => r.RoleName).ToArray();
+                    .FirstOrDefault(us => string.Compare(username, us.UserName, StringComparison.OrdinalIgnoreCase) == 0);
+                return user?.Roles.Select(r => r.RoleName).ToArray();
             }
         }
 
