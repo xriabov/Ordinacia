@@ -24,7 +24,7 @@ namespace Ordinacia.Data_Access
         [Key]
         public int InWID { get; set; }
         public User RefUser { get; set; }
-        public string nsuranceName { get; set; }
+        public string InsuranceName { get; set; }
     }
     
 }

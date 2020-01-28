@@ -420,21 +420,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001272040238_Init.cs" />
-    <Compile Include="Migrations\202001272040238_Init.Designer.cs">
-      <DependentUpon>202001272040238_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001281539413_SubFields.cs" />
-    <Compile Include="Migrations\202001281539413_SubFields.Designer.cs">
-      <DependentUpon>202001281539413_SubFields.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001282031549_yetAnotherOne.cs" />
-    <Compile Include="Migrations\202001282031549_yetAnotherOne.Designer.cs">
-      <DependentUpon>202001282031549_yetAnotherOne.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202001282034076_fixUser.cs" />
-    <Compile Include="Migrations\202001282034076_fixUser.Designer.cs">
-      <DependentUpon>202001282034076_fixUser.cs</DependentUpon>
+    <Compile Include="Migrations\202001282330097_A.cs" />
+    <Compile Include="Migrations\202001282330097_A.Designer.cs">
+      <DependentUpon>202001282330097_A.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\SerializeModel.cs" />
@@ -596,17 +584,8 @@
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001272040238_Init.resx">
-      <DependentUpon>202001272040238_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001281539413_SubFields.resx">
-      <DependentUpon>202001281539413_SubFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001282031549_yetAnotherOne.resx">
-      <DependentUpon>202001282031549_yetAnotherOne.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001282034076_fixUser.resx">
-      <DependentUpon>202001282034076_fixUser.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001282330097_A.resx">
+      <DependentUpon>202001282330097_A.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

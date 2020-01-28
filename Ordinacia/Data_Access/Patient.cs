@@ -11,8 +11,8 @@ namespace Ordinacia.Data_Access
         public string LastName { get; set; }
         public double Height { get; set; }
         public double Weight { get; set; }
-        public int InsuranceName { get; set; }
-        public User Doctor { get; set; }
+        public string InsuranceName { get; set; }
+        public Doc Doctor { get; set; }
         public virtual ICollection<Medicine> Medicines { get; set; }
     }
 }

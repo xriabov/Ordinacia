@@ -50,18 +50,9 @@
         <e p="Global.asax" t="Include" />
         <e p="Global.asax.cs" t="Include" />
         <e p="Migrations" t="Include">
-          <e p="202001272040238_Init.cs" t="Include" />
-          <e p="202001272040238_Init.Designer.cs" t="Include" />
-          <e p="202001272040238_Init.resx" t="Include" />
-          <e p="202001281539413_SubFields.cs" t="Include" />
-          <e p="202001281539413_SubFields.Designer.cs" t="Include" />
-          <e p="202001281539413_SubFields.resx" t="Include" />
-          <e p="202001282031549_yetAnotherOne.cs" t="Include" />
-          <e p="202001282031549_yetAnotherOne.Designer.cs" t="Include" />
-          <e p="202001282031549_yetAnotherOne.resx" t="Include" />
-          <e p="202001282034076_fixUser.cs" t="Include" />
-          <e p="202001282034076_fixUser.Designer.cs" t="Include" />
-          <e p="202001282034076_fixUser.resx" t="Include" />
+          <e p="202001282330097_A.cs" t="Include" />
+          <e p="202001282330097_A.Designer.cs" t="Include" />
+          <e p="202001282330097_A.resx" t="Include" />
           <e p="Configuration.cs" t="Include" />
         </e>
         <e p="Models" t="Include">

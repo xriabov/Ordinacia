@@ -7,13 +7,13 @@ namespace Ordinacia.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class yetAnotherOne : IMigrationMetadata
+    public sealed partial class A : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(yetAnotherOne));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(A));
         
         string IMigrationMetadata.Id
         {
-            get { return "202001282031549_yetAnotherOne"; }
+            get { return "202001282330097_A"; }
         }
         
         string IMigrationMetadata.Source

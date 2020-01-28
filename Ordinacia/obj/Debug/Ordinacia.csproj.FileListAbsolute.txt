@@ -176,8 +176,6 @@
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/bin/System.Numerics.Vectors.xml
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/bin/System.Runtime.CompilerServices.Unsafe.xml
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/bin/System.Text.Encodings.Web.xml
-/Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.Migrations.Init.resources
-/Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.csproj.GenerateResource.cache
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/bin/Ordinacia.dll.config
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/bin/Microsoft.Bcl.AsyncInterfaces.dll
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/bin/Microsoft.Bcl.HashCode.dll
@@ -186,5 +184,5 @@
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/bin/Microsoft.Bcl.HashCode.xml
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/bin/System.Threading.Tasks.Extensions.xml
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.dll.config
-/Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.Migrations.SubFields.resources
-/Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.Migrations.yetAnotherOne.resources
+/Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.Migrations.A.resources
+/Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.csproj.GenerateResource.cache

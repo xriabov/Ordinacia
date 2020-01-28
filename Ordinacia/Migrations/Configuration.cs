@@ -3,6 +3,7 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using MySql.Data.EntityFramework;
 
 namespace Ordinacia.Migrations
 {
@@ -11,7 +12,7 @@ namespace Ordinacia.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            SetSqlGenerator("MySql.Data.MySqlClient", new MySql.Data.EntityFramework.MySqlMigrationSqlGenerator());
+            SetSqlGenerator("MySql.Data.MySqlClient", new MySqlMigrationSqlGenerator());
         }
     } 
 }
