@@ -562,6 +562,7 @@
     <Content Include="Views\Doctor\Medicines.cshtml" />
     <Content Include="Views\Doctor\Patients.cshtml" />
     <Content Include="Views\Doctor\Pharmacists.cshtml" />
+    <Content Include="Views\Doctor\RenderMedicines.cshtml" />
     <Content Include="Views\Doctor\_Layout.cshtml" />
     <Content Include="Views\InsuranceWorker\Index.cshtml" />
     <Content Include="Views\Pharmacist\Index.cshtml" />

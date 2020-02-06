@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -33,25 +34,34 @@ namespace Ordinacia.Controllers
 
         public ActionResult Patients()
         {
+            var VM = new DocPatientsVM();
             using (AuthenticationDB context = new AuthenticationDB())
             {
                 var patients = context.Patients.Where(p =>
                     p.Doctor.RefUser.UserId == ((OrdPrincipal)HttpContext.User).UserID).ToList();
                 if(patients == null)
                     patients = new List<Patient>();
-                var VM = new DocPatientsVM
+                var medicines = new Dictionary<string, ICollection<Medicine>>();
+                foreach (var medicine in context.Medicines)
                 {
-                    Medicines = context.Medicines.ToList(),
-                    Patients = patients,
-                    Pharmacies = context.Medicines.Select(m => m.PharmacyName).Distinct().ToList(),
-                };
-                return View(VM);
+                    if(!medicines.Keys.Contains(medicine.PharmacyName))
+                        medicines[medicine.PharmacyName] = new List<Medicine>();
+                    medicines[medicine.PharmacyName].Append(medicine);
+                }
+                VM.Patients = patients;
+                VM.Medicines = medicines;
             }
+            return View(VM);
         }
 
         public ActionResult Pharmacists()
         {
             return View();
+        }
+
+        public PartialViewResult RenderMedicines(string currentPharmacy)
+        {
+            
         }
     }
 }
