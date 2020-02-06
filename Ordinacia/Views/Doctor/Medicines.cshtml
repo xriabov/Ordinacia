@@ -1,0 +1,39 @@
+@using System.Web.Mvc.Html
+@model Ordinacia.Models.DocPatientsVM
+
+<div class="card row overflow-auto" style="height: 75%">
+    <div class="card-header">
+        Medicines<br/>
+        @Html.DropDownListFor(x => x.SelectedPharmacy, new SelectList(Model.Pharmacies))
+    </div>
+    <div class="card-body">
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody class="body">
+            @foreach (var med in Model.Medicines)
+            {
+                <tr>
+                    <td>
+                        <button class="btn btn-success" value="@med.MedicineID"/>
+                    </td>
+                    <td>
+                        @med.Name
+                    </td>
+                    <td>
+                        @med.Price
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <script>
+        
+    </script>
+</div>

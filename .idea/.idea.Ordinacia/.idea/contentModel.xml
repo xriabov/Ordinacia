@@ -56,6 +56,7 @@
           <e p="Configuration.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
+          <e p="DoctorM.cs" t="Include" />
           <e p="SerializeModel.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />
@@ -191,9 +192,9 @@
           </e>
         </e>
         <e p="ViewModels" t="Include">
+          <e p="DocPatientsVM.cs" t="Include" />
+          <e p="DocVM.cs" t="Include" />
           <e p="LoginVM.cs" t="Include" />
-          <e p="RegistrationForm.cs" t="Include" />
-          <e p="RegistrationVM.cs" t="Include" />
         </e>
         <e p="Views" t="Include">
           <e p="_ViewStart.cshtml" t="Include" />
@@ -201,7 +202,11 @@
             <e p="Login.cshtml" t="Include" />
           </e>
           <e p="Doctor" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
+            <e p="Medicines.cshtml" t="Include" />
+            <e p="Patients.cshtml" t="Include" />
+            <e p="Pharmacists.cshtml" t="Include" />
           </e>
           <e p="INsuranceWOrker" t="Include">
             <e p="Index.cshtml" t="Include" />

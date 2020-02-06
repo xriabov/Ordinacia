@@ -1,1 +1,13 @@
-Doctor index page
+@model Ordinacia.Models.DoctorM
+@{
+    ViewBag.Title = "Ordinacia app";
+    Layout = "_Layout.cshtml";
+}
+
+<h2>IMMA DOCTAR</h2> 
+<div class="text-center">
+    Ma name is @Model.FirstName @Model.LastName <br/>
+    SPECIALIZATION IN @Model.Specialization <br/>
+    <a href="/Doctor/Patients" class="btn btn-primary">PATIENTZ</a>
+    <a href="/Doctor/Pharmacists" class="btn btn-primary">PHRMCISTZ</a>
+</div>

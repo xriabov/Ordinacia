@@ -24,9 +24,10 @@ namespace Ordinacia.Data_Access
         public DbSet<User> Usrs { get; set; }
         public DbSet<Role> Rls { get; set; }
         public DbSet<Patient> Patients { get; set; }
-
+        public DbSet<Medicine> Medicines { get; set; }
         public DbSet<Doc> Docs { get; set; }
         public DbSet<Pharm> Pharms { get; set; }
         public DbSet<InW> InWs { get; set; }
+        
     }
 }

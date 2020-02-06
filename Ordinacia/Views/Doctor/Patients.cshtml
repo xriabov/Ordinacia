@@ -1,0 +1,60 @@
+@model Ordinacia.Models.DocPatientsVM
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Patients";
+}
+
+<div class="container col" style="height: 100%">
+    <div class="col-8 float-left overflow-auto" style="height: 100%">
+        <div style="height: 70%">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">First name</th>
+                    <th scope="col">Last name</th>
+                </tr>
+                </thead>
+                @foreach (var patient in Model.Patients)
+                {
+                    <tr>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                <button class="btn btn-sm btn-outline-primary">View</button>
+                            </div>
+                        </td>
+                        <td>@patient.FirstName</td>
+                        <td>@patient.LastName</td>
+                    </tr>
+                }
+            </table>
+            <button class="btn btn-outline-success">Add new</button>
+        </div>
+        <div class="card" style="height: 30%">
+            <div class="card-header">
+                About patient
+            </div>
+            <div class="card-body">
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4 float-right" style="height: 100%">
+        <div class="card row overflow-auto" style="height: 25%">
+            <div class="card-header">
+                Patient's medicines
+            </div>
+            <div class="card-body">
+                <ol>
+                    <li>
+                        One
+                    </li>
+                    <li>Two</li>
+                </ol>
+            </div>
+        </div>
+        @Html.Partial("Medicines", Model)
+    </div>
+</div>
