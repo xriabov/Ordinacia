@@ -1,3 +1,16 @@
-@model ICollection<Ordinacia.Data_Access.Medicine>
-
+@model Ordinacia.ViewModels.DocMedicinesVM
+@foreach (var med in Model.Medicines)
+{
+    <tr>
+        <td>
+            <a href="/Doctor/AddMedicine?medicineId=@med.MedicineID&currentPatient=@Model.CurrentPatientId"><button class="btn btn-outline-success btn-sm">+</button></a>
+        </td>
+        <td>
+            @med.Name
+        </td>
+        <td>
+            €@med.Price
+        </td>
+    </tr>
+}
 @* print everything to the table *@

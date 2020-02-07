@@ -428,6 +428,7 @@
     <Compile Include="Models\DoctorM.cs" />
     <Compile Include="Models\SerializeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DocMedicinesVM.cs" />
     <Compile Include="ViewModels\DocPatientsVM.cs" />
     <Compile Include="ViewModels\DocVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
@@ -559,7 +560,6 @@
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
-    <Content Include="Views\Doctor\Medicines.cshtml" />
     <Content Include="Views\Doctor\Patients.cshtml" />
     <Content Include="Views\Doctor\Pharmacists.cshtml" />
     <Content Include="Views\Doctor\RenderMedicines.cshtml" />

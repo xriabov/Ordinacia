@@ -1,3 +1,4 @@
+@using System.Web.UI.WebControls
 @model Ordinacia.Models.DocPatientsVM
 @{
     Layout = "_Layout.cshtml";
@@ -35,14 +36,14 @@
             <div class="card-header">
                 About patient
             </div>
-            <div class="card-body">
+            <div class="card-body" id="patient" data-id="">
 
             </div>
         </div>
     </div>
 
     <div class="col-4 float-right" style="height: 100%">
-        <div class="card row overflow-auto" style="height: 25%">
+        <div class="card row overflow-auto" style="height: 30%">
             <div class="card-header">
                 Patient's medicines
             </div>
@@ -55,20 +56,17 @@
                 </ol>
             </div>
         </div>
-        <div class="card row overflow-auto" style="height: 75%">
+        <div class="card row overflow-auto" style="height: 70%">
             <div class="card-header">
                 Medicines<br/>
-                <select id="selection">
-                    @foreach (var pharm in Model.Medicines.Keys)
-                    {
-                        <option value="@pharm">
-                            @pharm
-                        </option>
-                    }
-                </select>
+                @Html.DropDownListFor(
+                       x => x.CurrentPharmacy,
+                       new SelectList(Model.Pharmacies),
+                       "Choose pharmacy",
+                       new {onchange = "renderMedicines()", onload = "renderMedicines()", @class="float-right"})
             </div>
             <div class="card-body">
-                <table>
+                <table class="table">
                     <thead>
                     <tr>
                         <th></th>
@@ -76,17 +74,29 @@
                         <th>Price</th>
                     </tr>
                     </thead>
-                    <tbody class="card-body" id="med-data">
-
+                    <tbody id="med-data">
+                    
                     </tbody>
                 </table>
             </div>
-            <script>
-                document.querySelector("#selection").addEventListener(oninput, function() {
-                    document.querySelector("#med-data").insertAdjacentHTML(@{ Html.RenderAction("RenderMedicines"); })
-                })
-                
-            </script>
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    renderMedicines();
+    function renderMedicines(){
+        var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this);
+             document.querySelector("#med-data").insertAdjacentHTML("afterbegin", this.responseText);
+            }
+          };
+          let val = document.querySelector("#CurrentPharmacy").value;
+          let patient = document.querySelector("#patient").dataset.id;
+          if(!patient)
+              patient = 0;
+          xhttp.open("GET", "/Doctor/RenderMedicines?currentPharmacy="+val+"&currentPatient="+patient, true);
+          xhttp.send(val);
+    }
+</script>

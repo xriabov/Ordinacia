@@ -6,6 +6,7 @@ using Microsoft.Ajax.Utilities;
 using Ordinacia.Authentication;
 using Ordinacia.Data_Access;
 using Ordinacia.Models;
+using Ordinacia.ViewModels;
 
 namespace Ordinacia.Controllers
 {
@@ -41,15 +42,10 @@ namespace Ordinacia.Controllers
                     p.Doctor.RefUser.UserId == ((OrdPrincipal)HttpContext.User).UserID).ToList();
                 if(patients == null)
                     patients = new List<Patient>();
-                var medicines = new Dictionary<string, ICollection<Medicine>>();
-                foreach (var medicine in context.Medicines)
-                {
-                    if(!medicines.Keys.Contains(medicine.PharmacyName))
-                        medicines[medicine.PharmacyName] = new List<Medicine>();
-                    medicines[medicine.PharmacyName].Append(medicine);
-                }
+                
                 VM.Patients = patients;
-                VM.Medicines = medicines;
+                VM.Medicines = context.Medicines.ToList();
+                VM.Pharmacies = context.Medicines.Select(x => x.PharmacyName).Distinct().ToList();
             }
             return View(VM);
         }
@@ -59,8 +55,15 @@ namespace Ordinacia.Controllers
             return View();
         }
 
-        public PartialViewResult RenderMedicines(string currentPharmacy)
+        public PartialViewResult RenderMedicines(string currentPharmacy, int currentPatient)
         {
+            using (var db = new AuthenticationDB())
+            {
+                var VM = new DocMedicinesVM();
+                VM.Medicines = db.Medicines.Where(m => m.PharmacyName == currentPharmacy).ToList();
+                VM.CurrentPatientId = currentPatient;
+                return PartialView(VM);
+            }
             
         }
     }

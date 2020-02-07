@@ -192,6 +192,7 @@
           </e>
         </e>
         <e p="ViewModels" t="Include">
+          <e p="DocMedicinesVM.cs" t="Include" />
           <e p="DocPatientsVM.cs" t="Include" />
           <e p="DocVM.cs" t="Include" />
           <e p="LoginVM.cs" t="Include" />
@@ -204,9 +205,9 @@
           <e p="Doctor" t="Include">
             <e p="_Layout.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
-            <e p="Medicines.cshtml" t="Include" />
             <e p="Patients.cshtml" t="Include" />
             <e p="Pharmacists.cshtml" t="Include" />
+            <e p="RenderMedicines.cshtml" t="Include" />
           </e>
           <e p="INsuranceWOrker" t="Include">
             <e p="Index.cshtml" t="Include" />
