@@ -12,7 +12,7 @@ namespace Ordinacia.Data_Access
         public double Height { get; set; }
         public double Weight { get; set; }
         public string InsuranceName { get; set; }
-        public Doc Doctor { get; set; }
+        public virtual Doc Doctor { get; set; }
         public virtual ICollection<Medicine> Medicines { get; set; }
     }
 }

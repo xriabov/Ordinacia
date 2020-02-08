@@ -3,7 +3,7 @@
 {
     <tr>
         <td>
-            <a href="/Doctor/AddMedicine?medicineId=@med.MedicineID&currentPatient=@Model.CurrentPatientId"><button class="btn btn-outline-success btn-sm">+</button></a>
+            <button class="btn btn-outline-success btn-sm" onclick="addMed(this)" data-med="@med.MedicineID" data-pat="@Model.CurrentPatientId">+</button>
         </td>
         <td>
             @med.Name

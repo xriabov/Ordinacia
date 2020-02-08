@@ -1,0 +1,28 @@
+@model Ordinacia.Data_Access.Patient
+<div class="card card-body" style="height:100%">
+    <table class="table">
+        <thead>
+        <tr>
+            <th colspan="2">About patient</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th>Patient's name</th>
+            <td>@Model.FirstName @Model.LastName</td>
+        </tr>
+        <tr>
+            <th>Weight</th>
+            <td>@Model.Weight</td>
+        </tr>
+        <tr>
+            <th>Height</th>
+            <td>@Model.Height</td>
+        </tr>
+        <tr>
+            <th>Insurance</th>
+            <td>@Model.InsuranceName</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

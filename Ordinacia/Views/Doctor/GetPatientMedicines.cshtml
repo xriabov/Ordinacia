@@ -1,0 +1,11 @@
+@model Ordinacia.ViewModels.PatientMedicinesVM
+
+@foreach (var med in Model.Medicines)
+{
+    <tr>
+        <td><button class="btn btn-outline-danger btn-sm" onclick="deleteMed(this)" data-med="@med.MedicineID" data-pat="@Model.PatientId">-</button></td>
+        <td>@med.Name</td>
+        <td>€@med.Price</td>
+        <td>@med.PharmacyName</td>
+    </tr>
+}

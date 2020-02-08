@@ -39,14 +39,15 @@ namespace Ordinacia.Controllers
             using (AuthenticationDB context = new AuthenticationDB())
             {
                 var patients = context.Patients.Where(p =>
-                    p.Doctor.RefUser.UserId == ((OrdPrincipal)HttpContext.User).UserID).ToList();
-                if(patients == null)
+                    p.Doctor.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID).ToList();
+                if (patients == null)
                     patients = new List<Patient>();
-                
+
                 VM.Patients = patients;
                 VM.Medicines = context.Medicines.ToList();
                 VM.Pharmacies = context.Medicines.Select(x => x.PharmacyName).Distinct().ToList();
             }
+
             return View(VM);
         }
 
@@ -64,7 +65,96 @@ namespace Ordinacia.Controllers
                 VM.CurrentPatientId = currentPatient;
                 return PartialView(VM);
             }
-            
+        }
+
+        public PartialViewResult GetPatientData(int id)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                Patient patient = db.Patients
+                    .FirstOrDefault(x =>
+                        x.PatientID == id && x.Doctor.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID);
+                return PartialView(patient);
+            }
+        }
+
+        public PartialViewResult GetPatientMedicines(int id)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                PatientMedicinesVM VM = new PatientMedicinesVM();
+                VM.Medicines = db.Patients
+                    .FirstOrDefault(x =>
+                        x.PatientID == id && x.Doctor.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID)
+                    ?.Medicines;
+                VM.PatientId = id;
+                return PartialView(VM);
+            }
+        }
+
+        public void AddMedicine(int medicineId, int currentPatient)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                db.Patients
+                    .FirstOrDefault(p => (p.PatientID == currentPatient)
+                                         & (p.Doctor.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID))
+                    ?.Medicines
+                    .Add(db.Medicines.FirstOrDefault(m => m.MedicineID == medicineId));
+                db.SaveChanges();
+            }
+        }
+
+        public void DeleteMedicine(int patient, int medicine)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                db.Patients
+                    .FirstOrDefault(p => (p.PatientID == patient)
+                                         && (p.Doctor.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID))
+                    ?.Medicines
+                    .Remove(db.Medicines.FirstOrDefault(m => m.MedicineID == medicine));
+                db.SaveChanges();
+            }
+        }
+
+        public void DeletePatient(int patient)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                // ReSharper disable once AssignNullToNotNullAttribute
+                db.Patients.Remove(db.Patients.FirstOrDefault(p => (p.PatientID == patient)
+                                                                   && (p.Doctor.RefUser.UserId ==
+                                                                       ((OrdPrincipal) HttpContext.User).UserID)));
+                db.SaveChanges();
+            }
+        }
+
+        [HttpGet]
+        public PartialViewResult AddPatient()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult AddPatient(PatientForm patientForm)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                db.Patients.Add(new Patient
+                {
+                    FirstName = patientForm.FirstName,
+                    LastName = patientForm.LastName,
+                    Doctor = db.Docs.FirstOrDefault(d => d.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID),
+                    Height = patientForm.Height,
+                    Weight = patientForm.Weight,
+                    InsuranceName = patientForm.InsuranceName,
+                    Medicines = new List<Medicine>(),
+                });
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Patients");
         }
     }
 }

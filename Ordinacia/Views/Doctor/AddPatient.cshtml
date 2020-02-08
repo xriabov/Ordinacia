@@ -1,0 +1,50 @@
+@model Ordinacia.Models.PatientForm
+
+<div class="card card-body" style="height:100%">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group row">
+            <div class="col-2">
+                First name:
+            </div>
+            <div class="col-2">
+                @Html.TextBoxFor(x => x.FirstName)
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Last name:
+            </div>
+            <div class="col-2">
+                @Html.TextBoxFor(x => x.LastName)
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Insurance:
+            </div>
+            <div class="col-2">
+            @Html.TextBoxFor(x => x.InsuranceName)
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Height:
+            </div>
+            <div class="col-2">
+            @Html.TextBoxFor(x => x.Height)
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                Weight:
+            </div>
+            <div class="col-2">
+            @Html.TextBoxFor(x => x.Weight)
+            </div>
+        </div>
+        <div class="form-group row">
+            <input type="submit" class="btn btn-outline-success"/>
+        </div>
+    }
+</div>

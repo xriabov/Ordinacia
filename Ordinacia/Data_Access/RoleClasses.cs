@@ -8,22 +8,22 @@ namespace Ordinacia.Data_Access
     {
         [Key]
         public int DocID { get; set; }
-        public User RefUser { get; set; }
+        public virtual User RefUser { get; set; }
         public string Specialization { get; set; }
-        public ICollection<Patient> Patients { get; set; }
+        public virtual ICollection<Patient> Patients { get; set; }
     }
     public class Pharm
     {
         [Key]
         public int PharmID { get; set; }
-        public User RefUser { get; set; }
+        public virtual User RefUser { get; set; }
         public string Pharmacy { get; set; }
     }
     public class InW
     {
         [Key]
         public int InWID { get; set; }
-        public User RefUser { get; set; }
+        public virtual User RefUser { get; set; }
         public string InsuranceName { get; set; }
     }
     

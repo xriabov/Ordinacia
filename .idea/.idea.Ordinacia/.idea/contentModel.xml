@@ -57,6 +57,7 @@
         </e>
         <e p="Models" t="Include">
           <e p="DoctorM.cs" t="Include" />
+          <e p="PatientForm.cs" t="Include" />
           <e p="SerializeModel.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive" />
@@ -74,6 +75,9 @@
           <e p="bootstrap.js.map" t="Include" />
           <e p="bootstrap.min.js" t="Include" />
           <e p="bootstrap.min.js.map" t="Include" />
+          <e p="Doc" t="Include">
+            <e p="Patients.js" t="Include" />
+          </e>
           <e p="esm" t="Include">
             <e p="popper-utils.js" t="Include" />
             <e p="popper-utils.js.map" t="Include" />
@@ -196,6 +200,7 @@
           <e p="DocPatientsVM.cs" t="Include" />
           <e p="DocVM.cs" t="Include" />
           <e p="LoginVM.cs" t="Include" />
+          <e p="PatientMedicinesVM.cs" t="Include" />
         </e>
         <e p="Views" t="Include">
           <e p="_ViewStart.cshtml" t="Include" />
@@ -204,6 +209,9 @@
           </e>
           <e p="Doctor" t="Include">
             <e p="_Layout.cshtml" t="Include" />
+            <e p="AddPatient.cshtml" t="Include" />
+            <e p="GetPatientData.cshtml" t="Include" />
+            <e p="GetPatientMedicines.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
             <e p="Patients.cshtml" t="Include" />
             <e p="Pharmacists.cshtml" t="Include" />

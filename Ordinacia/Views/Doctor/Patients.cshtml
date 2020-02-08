@@ -5,10 +5,10 @@
     ViewBag.Title = "Patients";
 }
 
-<div class="container col" style="height: 100%">
+<div class="container col" style="height: 90%">
     <div class="col-8 float-left overflow-auto" style="height: 100%">
-        <div style="height: 70%">
-            <table class="table">
+        <div style="height: 60%">
+            <table class="table table-hover">
                 <thead>
                 <tr>
                     <th scope="col"></th>
@@ -20,9 +20,9 @@
                 {
                     <tr>
                         <td>
-                            <div class="btn-group">
-                                <button class="btn btn-sm btn-outline-danger">Delete</button>
-                                <button class="btn btn-sm btn-outline-primary">View</button>
+                            <div class="btn-group" data-patient-id="@patient.PatientID">
+                                <button class="btn btn-sm btn-outline-danger" onclick="deletePatient(this)">Delete</button>
+                                <button class="btn btn-sm btn-outline-primary" onclick="viewButton(this)">View</button>
                             </div>
                         </td>
                         <td>@patient.FirstName</td>
@@ -30,73 +30,55 @@
                     </tr>
                 }
             </table>
-            <button class="btn btn-outline-success">Add new</button>
+            <button class="btn btn-outline-success" onclick="addPatient()">Add new</button>
         </div>
-        <div class="card" style="height: 30%">
-            <div class="card-header">
-                About patient
-            </div>
-            <div class="card-body" id="patient" data-id="">
+        <div id="patient" data-id="" style="height: 40%">
 
-            </div>
         </div>
     </div>
 
     <div class="col-4 float-right" style="height: 100%">
-        <div class="card row overflow-auto" style="height: 30%">
-            <div class="card-header">
-                Patient's medicines
-            </div>
-            <div class="card-body">
-                <ol>
-                    <li>
-                        One
-                    </li>
-                    <li>Two</li>
-                </ol>
-            </div>
+        <div class="card card-body row overflow-auto" style="height: 30%">
+            <table class="table table-hover overflow-auto">
+                <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Patient's medicines</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Pharmacy</th>
+                </tr>
+                </thead>
+                <tbody id="med-patient">
+                </tbody>
+            </table>
         </div>
-        <div class="card row overflow-auto" style="height: 70%">
-            <div class="card-header">
-                Medicines<br/>
-                @Html.DropDownListFor(
-                       x => x.CurrentPharmacy,
-                       new SelectList(Model.Pharmacies),
-                       "Choose pharmacy",
-                       new {onchange = "renderMedicines()", onload = "renderMedicines()", @class="float-right"})
-            </div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Price</th>
-                    </tr>
-                    </thead>
-                    <tbody id="med-data">
-                    
-                    </tbody>
-                </table>
-            </div>
+        <div class="card card-body row overflow-auto" style="height: 70%">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th colspan="2">Medicines</th>
+                    <th>
+                        @Html.DropDownListFor(
+                            x => x.CurrentPharmacy,
+                            new SelectList(Model.Pharmacies),
+                            "Choose pharmacy",
+                            new {onchange = "renderMedicines()", onload = "renderMedicines()", @class = "float-right"})
+                    </th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tbody id="med-data">
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    renderMedicines();
-    function renderMedicines(){
-        var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                console.log(this);
-             document.querySelector("#med-data").insertAdjacentHTML("afterbegin", this.responseText);
-            }
-          };
-          let val = document.querySelector("#CurrentPharmacy").value;
-          let patient = document.querySelector("#patient").dataset.id;
-          if(!patient)
-              patient = 0;
-          xhttp.open("GET", "/Doctor/RenderMedicines?currentPharmacy="+val+"&currentPatient="+patient, true);
-          xhttp.send(val);
-    }
-</script>
+
+<script type="text/javascript" src="~/Scripts/Doc/Patients.js"></script>
