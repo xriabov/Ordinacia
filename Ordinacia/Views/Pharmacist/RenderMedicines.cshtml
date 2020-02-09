@@ -1,0 +1,24 @@
+@model List<Ordinacia.Data_Access.Medicine>
+
+@foreach (var med in Model)
+{
+    <tr>
+        <td>
+            @med.Name
+        </td>
+        <td>
+            @med.Price
+        </td>
+    </tr>
+}
+<tr>
+    <th>
+        Total price:
+    </th>
+    <th>
+        @ViewBag.Price
+    </th>
+</tr>
+<tr>
+    <td><a href="/Pharmacist/PrintMedicines?id=@ViewBag.Id" class="btn btn-outline-info">Save</a></td>
+</tr>

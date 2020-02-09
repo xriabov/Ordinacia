@@ -103,6 +103,9 @@
           <e p="jquery.validate.unobtrusive.js" t="Include" />
           <e p="jquery.validate.unobtrusive.min.js" t="Include" />
           <e p="modernizr-2.8.3.js" t="Include" />
+          <e p="Pharmacist" t="Include">
+            <e p="Orders.js" t="Include" />
+          </e>
           <e p="popper-utils.js" t="Include" />
           <e p="popper-utils.js.map" t="Include" />
           <e p="popper-utils.min.js" t="Include" />
@@ -199,6 +202,7 @@
         <e p="ViewModels" t="Include">
           <e p="DocMedicinesVM.cs" t="Include" />
           <e p="DocPatientsVM.cs" t="Include" />
+          <e p="DocPrice.cs" t="Include" />
           <e p="DocVM.cs" t="Include" />
           <e p="LoginVM.cs" t="Include" />
           <e p="PatientMedicinesVM.cs" t="Include" />
@@ -227,6 +231,7 @@
             <e p="Index.cshtml" t="Include" />
             <e p="Medicines.cshtml" t="Include" />
             <e p="Orders.cshtml" t="Include" />
+            <e p="RenderMedicines.cshtml" t="Include" />
           </e>
           <e p="Shared" t="Include">
             <e p="401.cshtml" t="Include" />

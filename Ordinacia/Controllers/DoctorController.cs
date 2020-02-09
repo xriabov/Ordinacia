@@ -55,6 +55,7 @@ namespace Ordinacia.Controllers
 
         public ActionResult CoWorkers()
         {
+            throw new System.NotImplementedException();
             return View();
         }
 
