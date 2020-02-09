@@ -21,14 +21,6 @@ function renderMedicines(){
     xhttp.send();
 }
 
-function printMedicines(elem){
-    
-    const pat = elem.dataset.pat;
-    const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "/Doctor/PrintMedicines?patient="+pat, false);
-    xhttp.send();
-}
-
 function viewButton(elem) {
     console.log(elem);
     var id = elem.parentNode.dataset.patientId;

@@ -202,6 +202,7 @@
           <e p="DocVM.cs" t="Include" />
           <e p="LoginVM.cs" t="Include" />
           <e p="PatientMedicinesVM.cs" t="Include" />
+          <e p="PharmVM.cs" t="Include" />
         </e>
         <e p="Views" t="Include">
           <e p="_ViewStart.cshtml" t="Include" />
@@ -211,18 +212,21 @@
           <e p="Doctor" t="Include">
             <e p="_Layout.cshtml" t="Include" />
             <e p="AddPatient.cshtml" t="Include" />
+            <e p="CoWorkers.cshtml" t="Include" />
             <e p="GetPatientData.cshtml" t="Include" />
             <e p="GetPatientMedicines.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
             <e p="Patients.cshtml" t="Include" />
-            <e p="Pharmacists.cshtml" t="Include" />
             <e p="RenderMedicines.cshtml" t="Include" />
           </e>
           <e p="INsuranceWOrker" t="Include">
             <e p="Index.cshtml" t="Include" />
           </e>
           <e p="Pharmacist" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
+            <e p="Medicines.cshtml" t="Include" />
+            <e p="Orders.cshtml" t="Include" />
           </e>
           <e p="Shared" t="Include">
             <e p="401.cshtml" t="Include" />

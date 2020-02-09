@@ -434,6 +434,7 @@
     <Compile Include="ViewModels\DocVM.cs" />
     <Compile Include="ViewModels\LoginVM.cs" />
     <Compile Include="ViewModels\PatientMedicinesVM.cs" />
+    <Compile Include="ViewModels\PharmVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -567,11 +568,14 @@
     <Content Include="Views\Doctor\GetPatientMedicines.cshtml" />
     <Content Include="Views\Doctor\Index.cshtml" />
     <Content Include="Views\Doctor\Patients.cshtml" />
-    <Content Include="Views\Doctor\Pharmacists.cshtml" />
+    <Content Include="Views\Doctor\CoWorkers.cshtml" />
     <Content Include="Views\Doctor\RenderMedicines.cshtml" />
     <Content Include="Views\Doctor\_Layout.cshtml" />
     <Content Include="Views\InsuranceWorker\Index.cshtml" />
     <Content Include="Views\Pharmacist\Index.cshtml" />
+    <Content Include="Views\Pharmacist\Medicines.cshtml" />
+    <Content Include="Views\Pharmacist\Orders.cshtml" />
+    <Content Include="Views\Pharmacist\_Layout.cshtml" />
     <Content Include="Views\Shared\401.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

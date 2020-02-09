@@ -1,2 +1,12 @@
-Pharmacist index page
-
+@model Ordinacia.ViewModels.PharmVM
+@{
+    ViewBag.Title = "Ordinacia app";
+    Layout = "_Layout.cshtml";
+}
+<div class="text-center">
+    <h2>Welcome</h2>
+    Pharmacist @Model.FirstName @Model.LastName <br/>
+    Pharmacy: @Model.PharmacyName <br/>
+    <a href="/Doctor/Patients" class="btn btn-primary">Orders</a>
+    <a href="/Doctor/CoWorkers" class="btn btn-primary">Medicines</a>
+</div>

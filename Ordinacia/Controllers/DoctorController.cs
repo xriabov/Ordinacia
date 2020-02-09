@@ -53,7 +53,7 @@ namespace Ordinacia.Controllers
             return View(VM);
         }
 
-        public ActionResult Pharmacists()
+        public ActionResult CoWorkers()
         {
             return View();
         }
@@ -176,12 +176,7 @@ namespace Ordinacia.Controllers
                 writer.WriteLine("Overall price:\t" + db.Medicines.Sum(x => x.Price));
                 writer.Close();
             }
-
-            // Response.ContentType = "text/plain";
-            // Response.AppendHeader("Content-Disposition", "attachment; filename=Meds.txt"); 
-            // Response.TransmitFile(Server.MapPath("~/tmp/Meds.txt"));
-            // Response.End();
-
+            
             byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/tmp/Meds.txt"));
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Text.Plain, "Medicines.txt");
         }
