@@ -7,5 +7,6 @@ namespace Ordinacia.ViewModels
     {
         public ICollection<Medicine> Medicines { get; set; }
         public int PatientId { get; set; }
+        public double Price { get; set; }
     }
 }

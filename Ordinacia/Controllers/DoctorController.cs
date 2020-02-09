@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
@@ -7,6 +8,7 @@ using Ordinacia.Authentication;
 using Ordinacia.Data_Access;
 using Ordinacia.Models;
 using Ordinacia.ViewModels;
+using Org.BouncyCastle.Ocsp;
 
 namespace Ordinacia.Controllers
 {
@@ -88,6 +90,9 @@ namespace Ordinacia.Controllers
                         x.PatientID == id && x.Doctor.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID)
                     ?.Medicines;
                 VM.PatientId = id;
+                
+                if (VM.Medicines != null)
+                    VM.Price = VM.Medicines.Sum(x => x.Price);
                 return PartialView(VM);
             }
         }
@@ -130,12 +135,12 @@ namespace Ordinacia.Controllers
             }
         }
 
+        
         [HttpGet]
         public PartialViewResult AddPatient()
         {
             return PartialView();
         }
-
         [HttpPost]
         public ActionResult AddPatient(PatientForm patientForm)
         {
@@ -153,8 +158,32 @@ namespace Ordinacia.Controllers
                 });
                 db.SaveChanges();
             }
-
             return RedirectToAction("Patients");
+        }
+
+        public FileResult PrintMedicines(int patient)
+        {
+            StreamWriter writer = new StreamWriter(Server.MapPath("~/tmp/Meds.txt"));
+            using (var db = new AuthenticationDB())
+            {
+                var pat = db.Patients.FirstOrDefault(p => p.PatientID == patient);
+                writer.WriteLine(pat.FirstName + " " + pat.LastName);
+                foreach (var med in pat.Medicines)
+                {
+                    writer.WriteLine(med.Name + "\t" + med.PharmacyName + "\t" + med.Price);
+                }
+
+                writer.WriteLine("Overall price:\t" + db.Medicines.Sum(x => x.Price));
+                writer.Close();
+            }
+
+            // Response.ContentType = "text/plain";
+            // Response.AppendHeader("Content-Disposition", "attachment; filename=Meds.txt"); 
+            // Response.TransmitFile(Server.MapPath("~/tmp/Meds.txt"));
+            // Response.End();
+
+            byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/tmp/Meds.txt"));
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Text.Plain, "Medicines.txt");
         }
     }
 }

@@ -195,6 +195,7 @@
             <e p="popper.min.js.map" t="Include" />
           </e>
         </e>
+        <e p="tmp" t="Include" />
         <e p="ViewModels" t="Include">
           <e p="DocMedicinesVM.cs" t="Include" />
           <e p="DocPatientsVM.cs" t="Include" />

@@ -6,11 +6,10 @@ document.onkeydown = ev => {
 };
 
 renderMedicines();
-
 function renderMedicines(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             document.querySelector("#med-data").innerHTML = this.responseText;
         }
     };
@@ -19,6 +18,14 @@ function renderMedicines(){
     if(!patient)
         patient = 0;
     xhttp.open("GET", "/Doctor/RenderMedicines?currentPharmacy="+val+"&currentPatient="+patient, true);
+    xhttp.send();
+}
+
+function printMedicines(elem){
+    
+    const pat = elem.dataset.pat;
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/Doctor/PrintMedicines?patient="+pat, false);
     xhttp.send();
 }
 
@@ -94,5 +101,4 @@ function addPatient(){
     elem.innerHTML = xhttp.responseText;
     console.log(xhttp.responseText);
 }
-// display patient data in #patient (partial view)
-// display patient medicines in #med-patient (partial view)
+
