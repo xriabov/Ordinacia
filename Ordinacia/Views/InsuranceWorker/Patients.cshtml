@@ -1,0 +1,55 @@
+@model IEnumerable<Ordinacia.ViewModels.InsWVM>
+
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Patients";
+}
+
+<div class="row overflow-auto" style="height: 95%">
+    <div class="col-6" id="patients">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Patient's name</th>
+                <th>Total price</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var d in Model)
+            {
+                <tr>
+                    <td>
+                        <btn class="btn btn-outline-info" onclick="renderMedicines(this)" data-id="@d.Id">View</btn>
+                    </td>
+                    <td>
+                        @d.FirstName @d.LastName
+                    </td>
+                    <td>€@d.Price</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Pharmacy name
+                </th>
+                <th>
+                    Price
+                </th>
+            </tr>
+            </thead>
+            <tbody id="medicines">
+            
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="~/Scripts/InW/Patients.js"></script>

@@ -90,6 +90,9 @@
           </e>
           <e p="index.d.ts" t="Include" />
           <e p="index.js.flow" t="Include" />
+          <e p="InW" t="Include">
+            <e p="Patients.js" t="Include" />
+          </e>
           <e p="jquery-3.3.1.intellisense.js" t="Include" />
           <e p="jquery-3.3.1.js" t="Include" />
           <e p="jquery-3.3.1.min.js" t="Include" />
@@ -205,6 +208,7 @@
           <e p="DocPatientsVM.cs" t="Include" />
           <e p="DocPrice.cs" t="Include" />
           <e p="DocVM.cs" t="Include" />
+          <e p="InsWVM.cs" t="Include" />
           <e p="LoginVM.cs" t="Include" />
           <e p="PatientMedicinesVM.cs" t="Include" />
           <e p="PharmVM.cs" t="Include" />
@@ -225,7 +229,10 @@
             <e p="RenderMedicines.cshtml" t="Include" />
           </e>
           <e p="INsuranceWOrker" t="Include">
+            <e p="_Layout.cshtml" t="Include" />
             <e p="Index.cshtml" t="Include" />
+            <e p="Patients.cshtml" t="Include" />
+            <e p="RenderMedicines.cshtml" t="Include" />
           </e>
           <e p="Pharmacist" t="Include">
             <e p="_Layout.cshtml" t="Include" />

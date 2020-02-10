@@ -7,18 +7,21 @@
             @med.Name
         </td>
         <td>
+            @med.PharmacyName
+        </td>
+        <td>
             €@med.Price
         </td>
     </tr>
 }
 <tr>
     <th>
+        <a href="/InsuranceWorker/PrintMedicines?patient=@ViewBag.Id" class="btn btn-outline-info">Save</a>
+    </th>
+    <th>
         Total price:
     </th>
     <th>
-        €@ViewBag.Price
+        @ViewBag.Price
     </th>
-</tr>
-<tr>
-    <td><a href="/Pharmacist/PrintMedicines?id=@ViewBag.Id" class="btn btn-outline-info">Save</a></td>
 </tr>

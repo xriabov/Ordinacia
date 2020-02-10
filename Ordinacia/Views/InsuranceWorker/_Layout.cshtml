@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/Content/bootstrap.css"/>
+    <style>
+        html, body{
+        height: 100%;
+        }
+    </style>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark" style="margin-bottom:15px">
+    <a href="/Pharmacist/Index" class="navbar-brand">Ordinacia</a>
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/InsuranceWorker/Orders">Patients</a>
+        </li>
+    </ul>
+    <div class="navbar-nav">
+        <a class="nav-item nav-link" href="/Account/Login">Logout</a>
+    </div>
+</nav>
+<div style="height: 100%">
+    @RenderBody()
+</div>
+
+</body>
+</html>

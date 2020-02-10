@@ -1,2 +1,11 @@
-Insurance worker index page
+@{
+    Layout = "_Layout.cshtml";
+    ViewBag.Title = "Ordinacia app";
+}
 
+<div class="text-center">
+    <h2>Welcome</h2>
+    Pharmacist @ViewBag.FirstName @ViewBag.LastName <br/>
+    Insurance company: @ViewBag.InsuranceName <br/>
+    <a href="/InsuranceWorker/Patients" class="btn btn-primary">Patients</a>
+</div>
