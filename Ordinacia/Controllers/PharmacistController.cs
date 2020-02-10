@@ -88,6 +88,8 @@ namespace Ordinacia.Controllers
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Text.Plain, "Medicines.txt");
         }
 
+        
+        
         public ActionResult Medicines()
         {
             using (var db = new AuthenticationDB())
@@ -95,8 +97,40 @@ namespace Ordinacia.Controllers
                 var pharmacy = db.Pharms.FirstOrDefault(u =>
                     u.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID).Pharmacy;
                 
-                return View(db.Medicines.Where(m => m.PharmacyName == pharmacy));
+                return View(db.Medicines.Where(m => m.PharmacyName == pharmacy).ToList());
             }
+        }
+
+        public ActionResult DeleteMedicine(int id)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                db.Medicines.Remove(db.Medicines.FirstOrDefault(m => m.MedicineID == id));
+                db.SaveChanges();
+            }
+            return RedirectToAction("Medicines");
+        }
+
+        public ActionResult EditMedicine(int id, double price)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                db.Medicines.FirstOrDefault(m => m.MedicineID == id).Price = price;
+                db.SaveChanges();
+            }
+            return RedirectToAction("Medicines");
+        }
+        
+        public ActionResult AddMedicine(string name, double price)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                string pharmacy = db.Pharms.FirstOrDefault(u =>
+                    u.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID).Pharmacy;
+                db.Medicines.Add(new Medicine {Name = name, PharmacyName = pharmacy, Price = price});
+                db.SaveChanges();
+            }
+            return RedirectToAction("Medicines");
         }
     }
 }

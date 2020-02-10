@@ -1,6 +1,43 @@
+@model List<Ordinacia.Data_Access.Medicine>
 @{
     ViewBag.Title = "Medicines";
     Layout = "_Layout.cshtml";
 }
 
-<h2>Not implemented yet</h2>
+<div class="">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var med in Model)
+        {
+            <tr>
+                <td>
+                    <div class="btn-group" data-id="@med.MedicineID">
+                        <button onclick="deleteButton(this)" class="btn btn-outline-danger">Delete</button>
+                        <button onclick="editButton(this)" class="btn btn-outline-info">Edit</button>
+                    </div>
+                </td>
+                <td>
+                    @med.Name
+                </td>
+                <td>
+                    €@med.Price
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="3">
+                <button onclick="addButton()" class="btn btn-outline-success">Add new</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript" src="~/Scripts/Pharmacist/Medicines.js"></script>

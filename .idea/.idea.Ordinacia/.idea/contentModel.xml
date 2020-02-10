@@ -104,6 +104,7 @@
           <e p="jquery.validate.unobtrusive.min.js" t="Include" />
           <e p="modernizr-2.8.3.js" t="Include" />
           <e p="Pharmacist" t="Include">
+            <e p="Medicines.js" t="Include" />
             <e p="Orders.js" t="Include" />
           </e>
           <e p="popper-utils.js" t="Include" />
