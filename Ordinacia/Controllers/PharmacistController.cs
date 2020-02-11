@@ -45,6 +45,9 @@ namespace Ordinacia.Controllers
                         Price = d.Patients
                             .SelectMany(p => p.Medicines)
                             .Where(m => m.PharmacyName == pharmacy)
+                            .Sum(x => x.Price) == null ? 0 : d.Patients
+                            .SelectMany(p => p.Medicines)
+                            .Where(m => m.PharmacyName == pharmacy)
                             .Sum(x => x.Price)
                     }).ToList();
                 return View(VM);
