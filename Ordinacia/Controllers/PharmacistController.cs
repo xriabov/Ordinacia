@@ -116,7 +116,7 @@ namespace Ordinacia.Controllers
         {
             using (var db = new AuthenticationDB())
             {
-                if (!price.HasValue) return RedirectToAction("Medicines");
+                if (!price.HasValue || price.Value <= 0) return RedirectToAction("Medicines");
                 db.Medicines.FirstOrDefault(m => m.MedicineID == id).Price = price.Value;
                 db.SaveChanges();
             }
@@ -129,7 +129,7 @@ namespace Ordinacia.Controllers
             {
                 string pharmacy = db.Pharms.FirstOrDefault(u =>
                     u.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID).Pharmacy;
-                if (!price.HasValue) return RedirectToAction("Medicines");
+                if (!price.HasValue || price.Value <= 0) return RedirectToAction("Medicines");
                 db.Medicines.Add(new Medicine {Name = name, PharmacyName = pharmacy, Price = price.Value});
                 db.SaveChanges();
             }
