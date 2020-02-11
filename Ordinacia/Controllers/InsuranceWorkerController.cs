@@ -28,15 +28,18 @@ namespace Ordinacia.Controllers
         {
             using (var db = new AuthenticationDB())
             {
-                string ins = db.InWs.FirstOrDefault(u => u.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID)
+                string ins = db.InWs.FirstOrDefault(u => u.RefUser.UserId == ((OrdPrincipal) User).UserID)
                     .InsuranceName;
-                var patients = db.Patients.Where(p => p.InsuranceName == ins).Select(pat => new InsWVM
-                {
-                    FirstName = pat.FirstName,
-                    LastName = pat.LastName,
-                    Id = pat.PatientID,
-                    Price = pat.Medicines.Sum(x => x.Price),
-                }).ToList();
+                var patients = db.Patients
+                    .Where(p => p.InsuranceName == ins && p.Doctor.RefUser.UserId ==
+                                db.InWs.FirstOrDefault(u => u.RefUser.UserId == ((OrdPrincipal) User).UserID).Doc.UserId).Select(
+                        pat => new InsWVM
+                        {
+                            FirstName = pat.FirstName,
+                            LastName = pat.LastName,
+                            Id = pat.PatientID,
+                            Price = pat.Medicines.Sum(x => x.Price),
+                        }).ToList();
                 return View(patients);
             }
         }
@@ -66,7 +69,7 @@ namespace Ordinacia.Controllers
             using (var db = new AuthenticationDB())
             {
                 var VM = db.Patients.FirstOrDefault(p => p.PatientID == id).Medicines.ToList();
-                ViewBag.Price = VM.Sum(x => x.Price); // I don't like ViewModels anymore
+                ViewBag.Price = VM.Sum(x => x.Price);
                 ViewBag.Id = id;
                 return PartialView(VM);
             }

@@ -186,3 +186,5 @@
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.dll.config
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.Migrations.A.resources
 /Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.csproj.GenerateResource.cache
+/Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.Migrations.CoWorkers.resources
+/Users/riabov/Desktop/Programming/Csharp/Ordinacia/Ordinacia/obj/Debug/Ordinacia.Migrations.DocReference.resources

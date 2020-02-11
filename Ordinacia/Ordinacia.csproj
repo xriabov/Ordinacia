@@ -424,6 +424,14 @@
     <Compile Include="Migrations\202001282330097_A.Designer.cs">
       <DependentUpon>202001282330097_A.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002111523429_CoWorkers.cs" />
+    <Compile Include="Migrations\202002111523429_CoWorkers.Designer.cs">
+      <DependentUpon>202002111523429_CoWorkers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002111616090_DocReference.cs" />
+    <Compile Include="Migrations\202002111616090_DocReference.Designer.cs">
+      <DependentUpon>202002111616090_DocReference.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DoctorM.cs" />
     <Compile Include="Models\PatientForm.cs" />
@@ -609,6 +617,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001282330097_A.resx">
       <DependentUpon>202001282330097_A.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002111523429_CoWorkers.resx">
+      <DependentUpon>202002111523429_CoWorkers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002111616090_DocReference.resx">
+      <DependentUpon>202002111616090_DocReference.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -18,6 +18,7 @@ namespace Ordinacia.Data_Access
         public int PharmID { get; set; }
         public virtual User RefUser { get; set; }
         public string Pharmacy { get; set; }
+        public virtual User Doc { get; set; }
     }
     public class InW
     {
@@ -25,6 +26,7 @@ namespace Ordinacia.Data_Access
         public int InWID { get; set; }
         public virtual User RefUser { get; set; }
         public string InsuranceName { get; set; }
+        public virtual User Doc { get; set; }
     }
     
 }

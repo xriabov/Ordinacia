@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
+using Microsoft.EntityFrameworkCore.Internal;
 using Ordinacia.Authentication;
 using Ordinacia.Data_Access;
 using Ordinacia.Models;
@@ -44,10 +45,12 @@ namespace Ordinacia.Controllers
                     p.Doctor.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID).ToList();
                 if (patients == null)
                     patients = new List<Patient>();
-
+                
                 VM.Patients = patients;
                 VM.Medicines = context.Medicines.ToList();
-                VM.Pharmacies = context.Medicines.Select(x => x.PharmacyName).Distinct().ToList();
+                VM.Pharmacies = context.Pharms.Where(u => u.Doc.UserId == ((OrdPrincipal) User).UserID)
+                    .Select(p => p.Pharmacy).Distinct().ToList();
+                //VM.Pharmacies = context.Medicines.Select(x => x.PharmacyName).Distinct().ToList();
             }
 
             return View(VM);
@@ -129,14 +132,14 @@ namespace Ordinacia.Controllers
                 db.SaveChanges();
             }
         }
-
+        
 
         [HttpGet]
         public PartialViewResult AddPatient()
         {
             return PartialView();
         }
-
+        
         [HttpPost]
         public ActionResult AddPatient(PatientForm patientForm)
         {
@@ -157,7 +160,7 @@ namespace Ordinacia.Controllers
 
             return RedirectToAction("Patients");
         }
-
+        
         public FileResult PrintMedicines(int patient)
         {
             StreamWriter writer = new StreamWriter(Server.MapPath("~/tmp/Meds.txt"));
@@ -177,11 +180,9 @@ namespace Ordinacia.Controllers
             byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/tmp/Meds.txt"));
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Text.Plain, "Medicines.txt");
         }
-
         
         public ActionResult CoWorkers()
         {
-            
             return View();
         }
     }

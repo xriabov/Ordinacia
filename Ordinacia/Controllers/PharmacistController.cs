@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -36,19 +37,23 @@ namespace Ordinacia.Controllers
                 string pharmacy = db.Pharms.FirstOrDefault(u =>
                     u.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID).Pharmacy;
 
-                var VM = db.Docs
+                var VM = db.Docs.Where(d =>
+                        d.RefUser.UserId == db.Pharms
+                            .FirstOrDefault(p => p.RefUser.UserId == ((OrdPrincipal) User).UserID).Doc.UserId)
                     .Select(d => new DocPrice
                     {
                         Id = d.DocID,
                         FirstName = d.RefUser.FirstName,
                         LastName = d.RefUser.LastName,
                         Price = d.Patients
-                            .SelectMany(p => p.Medicines)
-                            .Where(m => m.PharmacyName == pharmacy)
-                            .Sum(x => x.Price) == null ? 0 : d.Patients
-                            .SelectMany(p => p.Medicines)
-                            .Where(m => m.PharmacyName == pharmacy)
-                            .Sum(x => x.Price)
+                                    .SelectMany(p => p.Medicines)
+                                    .Where(m => m.PharmacyName == pharmacy)
+                                    .Sum(x => x.Price) == null
+                            ? 0
+                            : d.Patients
+                                .SelectMany(p => p.Medicines)
+                                .Where(m => m.PharmacyName == pharmacy)
+                                .Sum(x => x.Price)
                     }).ToList();
                 return View(VM);
             }
@@ -87,20 +92,19 @@ namespace Ordinacia.Controllers
                 writer.WriteLine("Overall price:\t" + meds.Sum(x => x.Price));
                 writer.Close();
             }
-            
+
             byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/tmp/Meds.txt"));
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Text.Plain, "Medicines.txt");
         }
 
-        
-        
+
         public ActionResult Medicines()
         {
             using (var db = new AuthenticationDB())
             {
                 var pharmacy = db.Pharms.FirstOrDefault(u =>
                     u.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID).Pharmacy;
-                
+
                 return View(db.Medicines.Where(m => m.PharmacyName == pharmacy).ToList());
             }
         }
@@ -112,6 +116,7 @@ namespace Ordinacia.Controllers
                 db.Medicines.Remove(db.Medicines.FirstOrDefault(m => m.MedicineID == id));
                 db.SaveChanges();
             }
+
             return RedirectToAction("Medicines");
         }
 
@@ -123,9 +128,10 @@ namespace Ordinacia.Controllers
                 db.Medicines.FirstOrDefault(m => m.MedicineID == id).Price = price.Value;
                 db.SaveChanges();
             }
+
             return RedirectToAction("Medicines");
         }
-        
+
         public ActionResult AddMedicine(string name, double? price)
         {
             using (var db = new AuthenticationDB())
@@ -136,6 +142,7 @@ namespace Ordinacia.Controllers
                 db.Medicines.Add(new Medicine {Name = name, PharmacyName = pharmacy, Price = price.Value});
                 db.SaveChanges();
             }
+
             return RedirectToAction("Medicines");
         }
     }

@@ -53,6 +53,12 @@
           <e p="202001282330097_A.cs" t="Include" />
           <e p="202001282330097_A.Designer.cs" t="Include" />
           <e p="202001282330097_A.resx" t="Include" />
+          <e p="202002111523429_CoWorkers.cs" t="Include" />
+          <e p="202002111523429_CoWorkers.Designer.cs" t="Include" />
+          <e p="202002111523429_CoWorkers.resx" t="Include" />
+          <e p="202002111616090_DocReference.cs" t="Include" />
+          <e p="202002111616090_DocReference.Designer.cs" t="Include" />
+          <e p="202002111616090_DocReference.resx" t="Include" />
           <e p="Configuration.cs" t="Include" />
         </e>
         <e p="Models" t="Include">
