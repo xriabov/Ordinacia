@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Ordinacia.Authentication;
 using Ordinacia.Data_Access;
 using Ordinacia.ViewModels;
@@ -111,23 +112,25 @@ namespace Ordinacia.Controllers
             return RedirectToAction("Medicines");
         }
 
-        public ActionResult EditMedicine(int id, double price)
+        public ActionResult EditMedicine(int id, double? price)
         {
             using (var db = new AuthenticationDB())
             {
-                db.Medicines.FirstOrDefault(m => m.MedicineID == id).Price = price;
+                if (!price.HasValue) return RedirectToAction("Medicines");
+                db.Medicines.FirstOrDefault(m => m.MedicineID == id).Price = price.Value;
                 db.SaveChanges();
             }
             return RedirectToAction("Medicines");
         }
         
-        public ActionResult AddMedicine(string name, double price)
+        public ActionResult AddMedicine(string name, double? price)
         {
             using (var db = new AuthenticationDB())
             {
                 string pharmacy = db.Pharms.FirstOrDefault(u =>
                     u.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID).Pharmacy;
-                db.Medicines.Add(new Medicine {Name = name, PharmacyName = pharmacy, Price = price});
+                if (!price.HasValue) return RedirectToAction("Medicines");
+                db.Medicines.Add(new Medicine {Name = name, PharmacyName = pharmacy, Price = price.Value});
                 db.SaveChanges();
             }
             return RedirectToAction("Medicines");

@@ -53,12 +53,6 @@ namespace Ordinacia.Controllers
             return View(VM);
         }
 
-        public ActionResult CoWorkers()
-        {
-            throw new System.NotImplementedException();
-            return View();
-        }
-
         public PartialViewResult RenderMedicines(string currentPharmacy, int currentPatient)
         {
             using (var db = new AuthenticationDB())
@@ -91,7 +85,7 @@ namespace Ordinacia.Controllers
                         x.PatientID == id && x.Doctor.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID)
                     ?.Medicines;
                 VM.PatientId = id;
-                
+
                 if (VM.Medicines != null)
                     VM.Price = VM.Medicines.Sum(x => x.Price);
                 return PartialView(VM);
@@ -136,12 +130,13 @@ namespace Ordinacia.Controllers
             }
         }
 
-        
+
         [HttpGet]
         public PartialViewResult AddPatient()
         {
             return PartialView();
         }
+
         [HttpPost]
         public ActionResult AddPatient(PatientForm patientForm)
         {
@@ -159,6 +154,7 @@ namespace Ordinacia.Controllers
                 });
                 db.SaveChanges();
             }
+
             return RedirectToAction("Patients");
         }
 
@@ -177,9 +173,16 @@ namespace Ordinacia.Controllers
                 writer.WriteLine("Overall price:\t" + db.Medicines.Sum(x => x.Price));
                 writer.Close();
             }
-            
+
             byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/tmp/Meds.txt"));
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Text.Plain, "Medicines.txt");
+        }
+
+        
+        public ActionResult CoWorkers()
+        {
+            
+            return View();
         }
     }
 }
