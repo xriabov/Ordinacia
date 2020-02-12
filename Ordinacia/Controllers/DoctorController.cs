@@ -250,8 +250,7 @@ namespace Ordinacia.Controllers
 
             return RedirectToAction("CoWorkers");
         }
-
-
+        
         public void DeleteCoWorker(int id)
         {
             using (var db = new AuthenticationDB())
@@ -259,6 +258,15 @@ namespace Ordinacia.Controllers
                 db.InWs.RemoveRange(db.InWs.Where(u => u.RefUser.UserId == id));
                 db.Pharms.RemoveRange(db.Pharms.Where(u => u.RefUser.UserId == id));
                 db.Usrs.RemoveRange(db.Usrs.Where(u => u.UserId == id));
+                db.SaveChanges();
+            }
+        }
+
+        public void EditCoWorker(int id, string pas)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                db.Usrs.FirstOrDefault(x => x.UserId == id).UserPassword = pas;
                 db.SaveChanges();
             }
         }
