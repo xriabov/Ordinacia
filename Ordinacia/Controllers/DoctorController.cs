@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Ordinacia.Authentication;
 using Ordinacia.Data_Access;
@@ -45,7 +46,7 @@ namespace Ordinacia.Controllers
                     p.Doctor.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID).ToList();
                 if (patients == null)
                     patients = new List<Patient>();
-                
+
                 VM.Patients = patients;
                 VM.Medicines = context.Medicines.ToList();
                 VM.Pharmacies = context.Pharms.Where(u => u.Doc.UserId == ((OrdPrincipal) User).UserID)
@@ -132,14 +133,14 @@ namespace Ordinacia.Controllers
                 db.SaveChanges();
             }
         }
-        
+
 
         [HttpGet]
         public PartialViewResult AddPatient()
         {
             return PartialView();
         }
-        
+
         [HttpPost]
         public ActionResult AddPatient(PatientForm patientForm)
         {
@@ -160,7 +161,7 @@ namespace Ordinacia.Controllers
 
             return RedirectToAction("Patients");
         }
-        
+
         public FileResult PrintMedicines(int patient)
         {
             StreamWriter writer = new StreamWriter(Server.MapPath("~/tmp/Meds.txt"));
@@ -180,10 +181,86 @@ namespace Ordinacia.Controllers
             byte[] fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/tmp/Meds.txt"));
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Text.Plain, "Medicines.txt");
         }
-        
+
+        [HttpGet]
         public ActionResult CoWorkers()
         {
-            return View();
+            using (var db = new AuthenticationDB())
+            {
+                var VM = new CoWorkersVM();
+                VM.Pharmacists = db.Pharms.Where(p => p.Doc.UserId == ((OrdPrincipal) User).UserID).Select(ph =>
+                    new CoWorkerPharmacist
+                    {
+                        Id = ph.RefUser.UserId,
+                        FirstName = ph.RefUser.FirstName,
+                        LastName = ph.RefUser.LastName,
+                        Pharmacy = ph.Pharmacy,
+                    }).ToList();
+                VM.InsuranceWorkers = db.InWs.Where(p => p.Doc.UserId == ((OrdPrincipal) User).UserID).Select(ph =>
+                    new CoWorkerInsuranceWorker()
+                    {
+                        Id = ph.RefUser.UserId,
+                        FirstName = ph.RefUser.FirstName,
+                        LastName = ph.RefUser.LastName,
+                        InsuranceName = ph.InsuranceName,
+                    }).ToList();
+                return View(VM);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult CoWorkers(CoWorkersVM VM) // add co-worker
+        {
+            if (!ModelState.IsValid)
+                return RedirectToAction("CoWorkers");
+            string type;
+            using (var db = new AuthenticationDB())
+            {
+                if (db.Usrs.Any(x => x.UserName == VM.NewCoWorker.UserName))
+                    return RedirectToAction("CoWorkers");
+                type = VM.NewCoWorker.Type;
+                db.Usrs.Add(new User
+                {
+                    UserName = VM.NewCoWorker.UserName,
+                    FirstName = VM.NewCoWorker.FirstName,
+                    LastName = VM.NewCoWorker.LastName,
+                    Roles = db.Rls.Where(r => r.RoleName == type).ToList(),
+                    UserPassword = VM.NewCoWorker.Password,
+                });
+                db.SaveChanges();
+            }
+            using (var db = new AuthenticationDB())
+            {
+                if (type == "Insurance worker")
+                    db.InWs.Add(new InW
+                    {
+                        Doc = db.Usrs.FirstOrDefault(u => u.UserId == ((OrdPrincipal) User).UserID),
+                        InsuranceName = VM.NewCoWorker.Employer,
+                        RefUser = db.Usrs.FirstOrDefault(u => u.UserName == VM.NewCoWorker.UserName),
+                    });
+                else if (type == "Pharmacist")
+                    db.Pharms.Add(new Pharm
+                    {
+                        Doc = db.Usrs.FirstOrDefault(u => u.UserId == ((OrdPrincipal) User).UserID),
+                        Pharmacy = VM.NewCoWorker.Employer,
+                        RefUser = db.Usrs.FirstOrDefault(u => u.UserName == VM.NewCoWorker.UserName),
+                    });
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("CoWorkers");
+        }
+
+
+        public void DeleteCoWorker(int id)
+        {
+            using (var db = new AuthenticationDB())
+            {
+                db.InWs.RemoveRange(db.InWs.Where(u => u.RefUser.UserId == id));
+                db.Pharms.RemoveRange(db.Pharms.Where(u => u.RefUser.UserId == id));
+                db.Usrs.RemoveRange(db.Usrs.Where(u => u.UserId == id));
+                db.SaveChanges();
+            }
         }
     }
 }

@@ -67,7 +67,7 @@ namespace Ordinacia.Controllers
                     u.RefUser.UserId == ((OrdPrincipal) HttpContext.User).UserID).Pharmacy;
                 var VM = db.Docs.FirstOrDefault(d => d.DocID == id).Patients.SelectMany(p => p.Medicines)
                     .Where(m => m.PharmacyName == pharmacy).ToList();
-                ViewBag.Price = VM.Sum(x => x.Price); // I don't like ViewModels anymore
+                ViewBag.Price = VM.Sum(x => x.Price);
                 ViewBag.Id = id;
                 return PartialView(VM);
             }

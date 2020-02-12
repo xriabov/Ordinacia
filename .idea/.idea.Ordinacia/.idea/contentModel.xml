@@ -82,6 +82,7 @@
           <e p="bootstrap.min.js" t="Include" />
           <e p="bootstrap.min.js.map" t="Include" />
           <e p="Doc" t="Include">
+            <e p="CoWorkers.js" t="Include" />
             <e p="Patients.js" t="Include" />
           </e>
           <e p="esm" t="Include">
@@ -210,10 +211,10 @@
         </e>
         <e p="tmp" t="Include" />
         <e p="ViewModels" t="Include">
+          <e p="CoWorkersVM.cs" t="Include" />
           <e p="DocMedicinesVM.cs" t="Include" />
           <e p="DocPatientsVM.cs" t="Include" />
           <e p="DocPrice.cs" t="Include" />
-          <e p="DocVM.cs" t="Include" />
           <e p="InsWVM.cs" t="Include" />
           <e p="LoginVM.cs" t="Include" />
           <e p="PatientMedicinesVM.cs" t="Include" />

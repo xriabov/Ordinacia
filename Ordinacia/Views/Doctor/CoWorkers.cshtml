@@ -1,8 +1,127 @@
-
+@model Ordinacia.ViewModels.CoWorkersVM
 @{
     ViewBag.Title = "Co-workers";
     Layout = "_Layout.cshtml";
 }
 
-<h2>Not implemented yet</h2>
 
+<div class="row" style="height: 100%">
+    <div class="col-6 overflow-auto">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th colspan="4" class="text-center">
+                    Pharmacists
+                </th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Pharmacy</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var ph in Model.Pharmacists)
+            {
+                <tr>
+                    <td class="btn-group" data-id="@ph.Id" data-type="1">
+                        <button class="btn btn-outline-danger" onclick="onDeleteClicked(this)">Delete</button>
+                        <button class="btn btn-outline-info" onclick="onEditClicked(this)">Edit</button>
+                    </td>
+                    <td>@ph.FirstName</td>
+                    <td>@ph.LastName</td>
+                    <td>@ph.Pharmacy</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4">
+                    <button class="btn btn-outline-success" data-type="1" data-toggle="modal" data-target="#addNew">Add</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6 overflow-auto">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th colspan="4" class="text-center">
+                    Insurance workers
+                </th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Insurance company</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var ins in Model.InsuranceWorkers)
+            {
+                <tr>
+                    <td class="btn-group" data-id="@ins.Id" data-type="2">
+                        <button class="btn btn-outline-danger" onclick="onDeleteClicked(this)">Delete</button>
+                        <button class="btn btn-outline-info" onclick="onEditClicked(this)">Edit</button>
+                    </td>
+                    <td>@ins.FirstName</td>
+                    <td>@ins.LastName</td>
+                    <td>@ins.InsuranceName</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="4">
+                    <button class="btn btn-outline-success" data-type="2" data-toggle="modal" data-target="#addNew">Add</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<div class="modal" id="addNew">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add new co-worker</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            @using (Html.BeginForm())
+            {
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.NewCoWorker.UserName, new {placeholder = "Username"})
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.NewCoWorker.Password, new {placeholder = "Password", type = "password"})
+                            </div>
+                            <div class="form-group">
+                                @Html.DropDownListFor(x => x.NewCoWorker.Type, new SelectList(new[] {"Pharmacist", "Insurance worker"}), "User type")
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.NewCoWorker.FirstName, new {placeholder = "First name"})
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.NewCoWorker.LastName, new {placeholder = "Last name"})
+                            </div>
+                            <div class="form-group">
+                                @Html.TextBoxFor(x => x.NewCoWorker.Employer, new {placeholder = "Employer"})
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-success" value="Add"/>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="~/Scripts/Doc/CoWorkers.js"></script>
